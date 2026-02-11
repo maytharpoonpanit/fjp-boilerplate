@@ -1,3 +1,10 @@
+# Web Framework & Database
+flask
+Flask-SQLAlchemy
+psycopg2-binary
+SQLAlchemy
+python-dotenv
+
 # Data Analysis & Science
 numpy
 pandas
@@ -9,13 +16,9 @@ selenium
 beautifulsoup4
 lxml
 requests
+
+# Google Sheets Integration
 gspread
-oauth2client
 gspread-dataframe
 google-auth
-
-# Web Framework & Database
-flask
-psycopg2-binary
-SQLAlchemy
-python-dotenv
+oauth2client
