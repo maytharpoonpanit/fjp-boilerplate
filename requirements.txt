@@ -1,0 +1,21 @@
+# Data Analysis & Science
+numpy
+pandas
+matplotlib
+seaborn
+
+# Scraping & Automation
+selenium
+beautifulsoup4
+lxml
+requests
+gspread
+oauth2client
+gspread-dataframe
+google-auth
+
+# Web Framework & Database
+flask
+psycopg2-binary
+SQLAlchemy
+python-dotenv

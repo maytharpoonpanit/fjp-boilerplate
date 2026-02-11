@@ -1,0 +1,47 @@
+services:
+  # Database: PostgreSQL
+  db:
+    image: postgres:15
+    container_name: boilerplate_db
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+      POSTGRES_DB: ${DB_NAME:-mydatabase}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Data Environment: Jupyter
+  jupyter:
+    build:
+      context: .
+      dockerfile: jupyter/Dockerfile
+    container_name: boilerplate_jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    environment:
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-docker}
+    depends_on:
+      - db
+
+  # Web App: Flask
+  web:
+    build:
+      context: .
+      dockerfile: flask/Dockerfile
+    container_name: boilerplate_flask
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask:/app
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
